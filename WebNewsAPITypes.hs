@@ -8,15 +8,31 @@ module WebNewsAPITypes where
 			real_name :: String,
 			created_at :: String,
 			updated_at :: String,
-			preferences :: [(String, String)]
+			preferences :: Preferences
 		}
+		deriving(Show)
 	
+	data Preferences = Preferences
+		{
+			thread_mode :: String,
+			time_zone :: String
+		}
+		deriving(Show)
+
 	data Unread = Unread
 		{
-			unread_counts :: [(String, Integer)],
-			next_unread :: [(String, Integer)]
+			unread_counts :: UnreadCounts
 		}
-	
+		deriving(Show)
+
+	data UnreadCounts = UnreadCounts
+		{
+			normal :: Integer,
+			in_thread :: Integer,
+			in_reply :: Integer
+		}
+		deriving(Show)
+
 	data Newsgroup = Newsgroup
 		{
 			name :: String,
