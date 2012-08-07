@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+$header("CSH Mobile WebNews")$
+	<body>
+		<div data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline">
+				<h1>WebNews</h1>
+				<div data-role="navbar">
+					<ul>
+						<a href="index.html" data-ajax="false" data-icon="home">Home</a>
+						<a href="listviews.html" data-ajax="false" data-icon="list" class="ui-btn-active">Newsgroups</a>
+						<a href="settings.html" data-icon="cogs">Settings</a>
+					</ul>
+				</div>
+			</div>
+			<div data-role="content" data-theme="a">
+
+				<ul data-role="listview" data-inset="true" data-divider-theme="a">
+					<li data-role="list-divider">Newsgroups</li>
+					<li data-icon="flag"><a href="">com.constitution</a></li>
+					<li data-icon="arrow-right"><a href="">com.eboard</a></li>
+					<li data-icon="arrow-right"><a href="">com.eval</a></li>
+					<li data-icon="flag"><a href="">com.financial</a></li>
+					<li data-icon="flag"><a href="">com.house-history</a></li>
+					<li data-icon="arrow-right"><a href="">com.house-imps</a></li>
+					<li data-icon="arrow-right"><a href="">com.opcomm</a></li>
+					<li data-icon="arrow-right"><a href="">com.publicrelations</a></li>
+					<li data-icon="flag"><a href="">com.r+d</a></li>
+					<li data-icon="arrow-right"><a href="">com.social</a></li>
+					<li data-icon="arrow-right"><a href="">flame</a></li>
+					<li data-icon="arrow-right"><a href="">general</a></li>
+				</ul>
+
+
+			</div>
+		</div>
+	</body>
+</html>
