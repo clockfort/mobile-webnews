@@ -2,7 +2,13 @@
 -- is the canonical source for all WebNews returned-JSON-data API information.
 -- The API is not currently versioned, so please refer to there in case of any breaking changes.
 module WebNewsAPITypes where
-	data User = User
+	
+	data User = User {
+		user :: UserObj
+		} --User user user User? User.
+		deriving(Show)
+	
+	data UserObj = UserObj
 		{ 
 			username :: String,
 			real_name :: String,
