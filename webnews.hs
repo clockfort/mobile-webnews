@@ -11,6 +11,7 @@ import Data.Text.Lazy
 
 import Network.Wai.Handler.Warp
 
+listenPort = 3000 -- Might need to change this later, depending on what's free on CSH's webserver's loopback
 waiSettings = defaultSettings { settingsPort = (fromInteger listenPort), settingsHost = HostIPv4 }
 opts = Options {verbose = 1, settings = waiSettings}
 
@@ -26,6 +27,7 @@ main = scottyOpts opts $ do
 	get "/content/:handle" $ do
 		handle <- param "handle"
 		file $ "content/" ++ unpack handle
+
 	get "/themes/:handle" $ do
 		handle <- param "handle"
 		file $ "themes/" ++ unpack handle
