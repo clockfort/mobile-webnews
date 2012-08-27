@@ -48,13 +48,13 @@ Cabal-version:       >=1.2
 
 Executable mobile-webnews
   -- .hs or .lhs file containing the Main module.
-  -- Main-is:             
-  webnews-private.hs
+   Main-is:             
+     webnews_private.hs
 
   -- Packages needed in order to build this package.
-  -- Build-depends:       
-	aeson
-	scotty
+  Build-depends:       
+    aeson,
+    scotty
   -- Modules not exported by this package.
   -- Other-modules:       
   
