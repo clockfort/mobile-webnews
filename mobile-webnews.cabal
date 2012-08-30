@@ -52,8 +52,13 @@ Executable mobile-webnews
      webnews_private.hs
 
   -- Packages needed in order to build this package.
-  Build-depends:       
+  Build-depends: 
     aeson,
+    base,
+    bytestring,
+    curl,
+    HTTP,
+    MissingH,
     scotty
   -- Modules not exported by this package.
   -- Other-modules:       
