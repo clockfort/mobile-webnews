@@ -1,19 +1,16 @@
 -- For Scotty
 {-# LANGUAGE OverloadedStrings #-}
 import Web.Scotty
-
+import Network.Wai.Handler.Warp (defaultSettings, settingsPort, settingsHost, HostPreference (HostIPv4))
 -- For Me
-import Control.Monad.Trans
-import Data.Text.Lazy
-
+import Control.Monad.Trans (liftIO)
+import Data.Text.Lazy (pack, unpack)
 -- Project-Internal
 -- TODO: Hookup internal modules
 
-import Network.Wai.Handler.Warp
-
 listenPort = 3000 -- Might need to change this later, depending on what's free on CSH's webserver's loopback
-waiSettings = defaultSettings { settingsPort = (fromInteger listenPort), settingsHost = HostIPv4 }
-opts = Options {verbose = 1, settings = waiSettings}
+waiSettings = defaultSettings { settingsPort = fromInteger listenPort, settingsHost = HostIPv4 }
+opts = Options {verbose = 1, settings = waiSettings} -- Glad I got xich to put this in scotty :-)
 
 main = scottyOpts opts $ do
 	get "/" $ text "200: OK, Content not written yet"

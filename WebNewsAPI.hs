@@ -3,15 +3,16 @@
 
 module WebNewsAPI where
 	import Network.Curl
-	import Data.String.Utils --MissingH
+	import Data.String.Utils (join) --MissingH
 	import Network.HTTP
 	import Data.Aeson (decode, encode)
 	import Data.Aeson.TH (deriveJSON)
 	import qualified Data.ByteString.Lazy.Char8 as BL (pack, unpack)
-	import WebNewsAPITypes
 	import Data.Maybe (Maybe, fromJust)
 	import Control.Monad.Trans (liftIO)
 
+	import WebNewsAPITypes
+	
 	opts = [CurlHttpHeaders ["Accept: application/json"]]
 	baseURL = "https://webnews-dev.csh.rit.edu/" --Temporary, production environment doesn't have API access yet
 
@@ -27,6 +28,7 @@ module WebNewsAPI where
 	$(deriveJSON id ''UnreadCounts)
 	$(deriveJSON id ''Newsgroup)
 	$(deriveJSON id ''Newsgroups)
+
 	getJSON url apiKey = withCurlDo $ do
 		curl <- initialize
 		setopts curl opts
@@ -34,6 +36,8 @@ module WebNewsAPI where
 		let json = respBody response
 		return json
 
+-- These will probably eventually be glommed into one function that also takes in "what you want" and
+-- looks up the url for it in a mapping somewhere (or vicey-versey), but seperate for now is easier to debug.
 	getUnread apiKey = do
 		json <- getJSON "unread_counts" apiKey
 		let req = decode (BL.pack json) :: Maybe Unread
