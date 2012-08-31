@@ -46,9 +46,11 @@ module WebNewsAPITypes where
 			unread_count :: Integer,
 			unread_class :: String
 		}
+		deriving(Show)
 
 	data Newsgroups = Newsgroups
 		{
 			newsgroups :: [Newsgroup]
 		}
+		deriving(Show)
 	--TODO: Implement all WebNews-provided data structures. Mostly POST-ones missing.

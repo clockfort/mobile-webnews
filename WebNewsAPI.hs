@@ -21,10 +21,12 @@ module WebNewsAPI where
 	parameterize queryList = '?' : join "&" ( map (\ x -> concat[fst x, "=", urlEncode (snd x)]) queryList )
 	
 	$(deriveJSON id ''Preferences)
---	$(deriveJSON id ''User)
+	$(deriveJSON id ''UserObj)
+	$(deriveJSON id ''User)
 	$(deriveJSON id ''Unread)
 	$(deriveJSON id ''UnreadCounts)
-
+	$(deriveJSON id ''Newsgroup)
+	$(deriveJSON id ''Newsgroups)
 	getJSON url apiKey = withCurlDo $ do
 		curl <- initialize
 		setopts curl opts
@@ -34,6 +36,22 @@ module WebNewsAPI where
 
 	getUnread apiKey = do
 		json <- getJSON "unread_counts" apiKey
-		let req = (decode (BL.pack (json))) :: Maybe Unread
+		let req = decode (BL.pack json) :: Maybe Unread
 		return req
+	
+	getUser apiKey = do
+		json <- getJSON "user" apiKey
+		let req = decode (BL.pack json) :: Maybe User
+		return req
+
+	getPreferences apiKey = do
+		json <- getJSON "preferences" apiKey
+		let req = decode (BL.pack json) :: Maybe Preferences
+		return req
+
+	getNewsgroups apiKey = do
+		json <- getJSON "newsgroups" apiKey
+		let req = decode (BL.pack json) :: Maybe Newsgroups
+		return req
+
 	

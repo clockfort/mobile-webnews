@@ -2,3 +2,4 @@ webnews_private.hs
 test.html
 *.swp
 .DS_Store
+dist/
